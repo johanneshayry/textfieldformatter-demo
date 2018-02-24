@@ -12,6 +12,6 @@ public class SimpleIT extends AbstractIT {
 		getDriver().get("http://localhost:8080");
 		TextFieldElement textField = $(TextFieldElement.class).first();
 		textField.sendKeys("41004100");
-		Assert.assertEquals("4100 4100", textField.getValue());
+		Assert.assertEquals("4100 4100 ", textField.getValue());
 	}
 }
