@@ -3,3 +3,5 @@
 .project
 target
 drivers
+.vaadin-designer2
+src/main/resources/*.java

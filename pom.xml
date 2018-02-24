@@ -23,7 +23,8 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <!-- If there are no local customizations, this can also be "fetch" or
             "cdn" -->
-        <vaadin.widgetset.mode>local</vaadin.widgetset.mode>
+	<vaadin.widgetset.mode>local</vaadin.widgetset.mode>
+	<addon.version>2.0.alpha1</addon.version>
     </properties>
 
     <repositories>
@@ -69,9 +70,20 @@
             <artifactId>vaadin-themes</artifactId>
         </dependency>
         <dependency>
+           <groupId>org.vaadin.addons</groupId>
+           <artifactId>fontawesomelabel</artifactId>
+           <version>1.4.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.vaadin</groupId>
+            <artifactId>textfieldformatter</artifactId>
+	    <version>${addon.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.github.webdriverextensions</groupId>
             <artifactId>webdriverextensions</artifactId>
             <version>3.7.0</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.vaadin</groupId>
@@ -85,9 +97,31 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.0.2</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/src/main/resources</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/java/org/vaadin/textfieldformatter/samples</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -127,6 +161,13 @@
                                 <include>**/styles.css</include>
                                 <include>**/styles.scss.cache</include>
                             </includes>
+                        </fileset>
+                        <fileset>
+                            <directory>src/main/resources</directory>
+                            <includes>
+                                <include>*.java</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
                         </fileset>
                     </filesets>
                 </configuration>
