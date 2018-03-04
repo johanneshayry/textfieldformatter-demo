@@ -1,7 +1,8 @@
-package org.vaadin.textfieldformatter;
+package org.vaadin.textfieldformatter.demo;
 
 import javax.servlet.annotation.WebServlet;
 
+import org.vaadin.textfieldformatter.CreditCardFieldFormatter;
 import org.vaadin.textfieldformatter.CreditCardFieldFormatter.CreditCardType;
 import org.vaadin.textfieldformatter.samples.BlocksFormatterSample;
 import org.vaadin.textfieldformatter.samples.CreditCardFormatterSample;
@@ -45,24 +46,31 @@ public class MyUI extends UI {
 		formatter.extend(demo.creditCardField);
 		demo.creditCardCode.setCode(CreditCardFormatterSample.class);
 		formatter.addCreditCardChangedListener(e -> setCCIcon(demo.creditCardField, e.getCreditCardType()));
+		new CodeHighlightExtension().extend(demo.creditCardCode);
 
 		NumeralFormatterSample.getFormatter().extend(demo.numeralField);
 		demo.numeralCode.setCode(NumeralFormatterSample.class);
+		new CodeHighlightExtension().extend(demo.numeralCode);
 
 		CustomNumeralFormatterSample.getFormatter().extend(demo.customNumeralField);
 		demo.customNumeralCode.setCode(CustomNumeralFormatterSample.class);
+		new CodeHighlightExtension().extend(demo.customNumeralCode);
 
 		BlocksFormatterSample.getFormatter().extend(demo.blocksField);
 		demo.blocksCode.setCode(BlocksFormatterSample.class);
+		new CodeHighlightExtension().extend(demo.blocksCode);
 
 		NumericFormatterSample.getFormatter().extend(demo.numericField);
 		demo.numericCode.setCode(NumericFormatterSample.class);
+		new CodeHighlightExtension().extend(demo.numericCode);
 
 		DelimitersFormatterSample.getFormatter().extend(demo.delimitersField);
 		demo.delimitersCode.setCode(DelimitersFormatterSample.class);
+		new CodeHighlightExtension().extend(demo.delimitersCode);
 
 		PrefixFormatterSample.getFormatter().extend(demo.prefixField);
 		demo.prefixCode.setCode(PrefixFormatterSample.class);
+		new CodeHighlightExtension().extend(demo.prefixCode);
 	}
 
 	private void setCCIcon(TextField field, CreditCardType ccType) {

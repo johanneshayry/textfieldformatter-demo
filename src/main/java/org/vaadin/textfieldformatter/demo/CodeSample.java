@@ -1,17 +1,13 @@
-package org.vaadin.textfieldformatter;
+package org.vaadin.textfieldformatter.demo;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import com.vaadin.annotations.JavaScript;
-import com.vaadin.annotations.StyleSheet;
 import com.vaadin.shared.ui.ContentMode;
 import com.vaadin.ui.Label;
 
-@StyleSheet("prism.css")
-@JavaScript("prism.js")
 public class CodeSample extends Label {
 
 	private final static String SKIPPED_KEYWORD = "return";
