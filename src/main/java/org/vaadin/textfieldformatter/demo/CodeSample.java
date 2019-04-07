@@ -5,22 +5,21 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import com.vaadin.shared.ui.ContentMode;
-import com.vaadin.ui.Label;
+import com.github.appreciated.prism.element.Language;
+import com.github.appreciated.prism.element.PrismHighlighter;
+import com.vaadin.flow.component.Component;
+import com.vaadin.flow.component.HasSize;
+import com.vaadin.flow.component.html.H2;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-public class CodeSample extends Label {
+public class CodeSample extends VerticalLayout {
 
 	private final static String SKIPPED_KEYWORD = "return";
 
 	public CodeSample() {
 	}
 
-	@Override
-	public void attach() {
-		super.attach();
-	}
-
-	public void setCode(Class<?> sample) {
+	public void setSample(String caption, Component component, Class<?> sample) {
 		boolean found = false;
 		StringBuilder out = new StringBuilder();
 		InputStream in = sample.getResourceAsStream("/" + sample.getSimpleName() + ".java");
@@ -52,6 +51,12 @@ public class CodeSample extends Label {
 					out.append(System.lineSeparator());
 				}
 			}
+
+			add(new H2(caption));
+			add(component);
+			if (component instanceof HasSize) {
+				((HasSize) component).setWidthFull();
+			}
 			setCode(out.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -59,7 +64,9 @@ public class CodeSample extends Label {
 	}
 
 	private void setCode(String code) {
-		setContentMode(ContentMode.HTML);
-		setValue("<pre class=\"language-java\"><code class=\"language-java\">" + code + "</code></pre>");
+
+		PrismHighlighter javaCode = new PrismHighlighter(code, Language.java);
+		javaCode.getElement().getStyle().set("width", "100%");
+		add(javaCode);
 	}
 }
