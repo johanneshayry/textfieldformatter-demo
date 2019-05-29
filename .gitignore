@@ -5,3 +5,6 @@ target
 drivers
 .vaadin-designer2
 src/main/resources/*.java
+node_modules
+package-lock.json
+webpack.config.js
