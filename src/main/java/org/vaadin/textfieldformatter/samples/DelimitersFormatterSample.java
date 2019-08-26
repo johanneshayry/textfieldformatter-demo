@@ -7,11 +7,11 @@ import org.vaadin.textfieldformatter.CustomStringBlockFormatter.Options;
 public class DelimitersFormatterSample {
 	public static CustomStringBlockFormatter getFormatter() {
 		// {
-		Options options = new Options();
-		options.setBlocks(3, 3, 2);
-		options.setDelimiters("-", ".");
-		options.setForceCase(ForceCase.UPPER);
-		return new CustomStringBlockFormatter(options);
+Options options = new Options();
+options.setBlocks(3, 3, 2);
+options.setDelimiters("-", ".");
+options.setForceCase(ForceCase.UPPER);
+return new CustomStringBlockFormatter(options);
 		// }
 	}
 }

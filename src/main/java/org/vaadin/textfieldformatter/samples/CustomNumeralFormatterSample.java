@@ -5,7 +5,7 @@ import org.vaadin.textfieldformatter.NumeralFieldFormatter;
 public class CustomNumeralFormatterSample {
 	public static NumeralFieldFormatter getFormatter() {
 		// {
-		return new NumeralFieldFormatter(" ", ",", 1);
+return new NumeralFieldFormatter(" ", ",", 1);
 		// }
 	}
 }

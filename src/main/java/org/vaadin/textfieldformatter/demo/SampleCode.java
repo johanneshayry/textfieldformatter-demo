@@ -5,41 +5,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.polymertemplate.PolymerTemplate;
-import com.vaadin.flow.templatemodel.TemplateModel;
+import com.github.appreciated.prism.element.Language;
+import com.github.appreciated.prism.element.PrismHighlighterUnstyled;
+import com.vaadin.flow.component.HasSize;
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
-import elemental.json.Json;
-import elemental.json.JsonObject;
-
-/**
- * A Designer generated component for the sample-code template.
- *
- * Designer will add and remove fields with @Id mappings but
- * does not overwrite or otherwise change this file.
- */
-@Tag("sample-code")
-@JsModule("sample-code.js")
-public class SampleCode extends PolymerTemplate<SampleCode.SampleCodeModel> {
+@CssImport(value = "./prism-atom-dark.css", id = "prism-theme")
+public class SampleCode extends PrismHighlighterUnstyled implements HasSize {
 
 	private final static String SKIPPED_KEYWORD = "return";
-	
-    /**
-     * Creates a new SampleCode.
-     */
-    public SampleCode() {
-        // You can initialise any data required for the connected UI components here.
-    }
 
-    /**
-     * This model binds properties between SampleCode and sample-code
-     */
-    public interface SampleCodeModel extends TemplateModel {
-        // Add setters and getters for template properties here.
-    }
-    
-    public void setCode(Class<?> sample) {
+	public SampleCode(Class<?> sample) {
+		super(parseCode(sample), Language.java);
+	}
+
+	private static String parseCode(Class<?> sample) {
 		boolean found = false;
 		StringBuilder out = new StringBuilder();
 		InputStream in = sample.getResourceAsStream("/" + sample.getSimpleName() + ".java");
@@ -47,7 +28,6 @@ public class SampleCode extends PolymerTemplate<SampleCode.SampleCodeModel> {
 			String line;
 			while ((line = br.readLine()) != null) {
 				if (line.startsWith("import")) {
-					out.append("\t");
 					out.append(line);
 					out.append(System.lineSeparator());
 				}
@@ -71,19 +51,9 @@ public class SampleCode extends PolymerTemplate<SampleCode.SampleCodeModel> {
 					out.append(System.lineSeparator());
 				}
 			}
-			setCode(out.toString());
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	private void setCode(String code) {
-	    
-	    JsonObject detail = Json.createObject();
-	    detail.put("code", code);
-	    detail.put("lang", "java");
-	    
-	    getElement().setPropertyJson("detail", detail);
-		
+		return out.toString();
 	}
 }
