@@ -9,7 +9,6 @@ import com.github.appreciated.prism.element.Language;
 import com.github.appreciated.prism.element.PrismHighlighterUnstyled;
 import com.vaadin.flow.component.HasSize;
 import com.vaadin.flow.component.dependency.CssImport;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 
 @CssImport(value = "./prism-atom-dark.css", id = "prism-theme")
 public class SampleCode extends PrismHighlighterUnstyled implements HasSize {

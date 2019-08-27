@@ -120,7 +120,6 @@
                     <execution>
                         <goals>
                             <goal>prepare-frontend</goal>
-                            <goal>build-frontend</goal>
                         </goals>
                     </execution>
                 </executions>
@@ -154,6 +153,22 @@
                     <scanIntervalSeconds>2</scanIntervalSeconds>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>1.8.0</version>
+                <executions>
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <nodeVersion>v10.16.0</nodeVersion>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
@@ -164,6 +179,9 @@
             <properties>
                 <vaadin.productionMode>true</vaadin.productionMode>
             </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
 
             <dependencies>
                 <dependency>
@@ -171,6 +189,22 @@
                     <artifactId>flow-server-production-mode</artifactId>
                 </dependency>
             </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.vaadin</groupId>
+                        <artifactId>vaadin-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>build-frontend</goal>
+                                </goals>
+                                <phase>compile</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>
