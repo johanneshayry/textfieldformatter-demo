@@ -11,6 +11,7 @@ import org.vaadin.textfieldformatter.samples.CustomNumeralFormatterSample;
 import org.vaadin.textfieldformatter.samples.DelimitersFormatterSample;
 import org.vaadin.textfieldformatter.samples.NumeralFormatterSample;
 import org.vaadin.textfieldformatter.samples.NumericFormatterSample;
+import org.vaadin.textfieldformatter.samples.PhoneNumberSample;
 import org.vaadin.textfieldformatter.samples.PrefixFormatterSample;
 
 import com.vaadin.flow.component.AttachEvent;
@@ -53,14 +54,15 @@ public class MainView extends VerticalLayout {
 
 	private void initCodeSamples() {
 		Example creditCardExample = new Example(this::createCreditCardField, CreditCardFormatterSample.class);
+		Example phoneNumberExample = new Example(this::createPhoneNumberField, PhoneNumberSample.class);
 		Example numeralExample = new Example(this::createNumeralField, NumeralFormatterSample.class);
 		Example customNumeralExample = new Example(this::createCustomNumeralField, CustomNumeralFormatterSample.class);
 		Example blocksExample = new Example(this::createBlocksField, BlocksFormatterSample.class);
 		Example numericExample = new Example(this::createNumericField, NumericFormatterSample.class);
 		Example delimitersExample = new Example(this::createDelimitersField, DelimitersFormatterSample.class);
 		Example prefixExample = new Example(this::createPrefixField, PrefixFormatterSample.class);
-		addWithFullWidth(Arrays.asList(creditCardExample, numeralExample, customNumeralExample, blocksExample,
-				numericExample, delimitersExample, prefixExample));
+		addWithFullWidth(Arrays.asList(creditCardExample, phoneNumberExample, numeralExample, customNumeralExample,
+				blocksExample, numericExample, delimitersExample, prefixExample));
 	}
 
 	private <T extends Component & HasSize> void addWithFullWidth(List<T> components) {
@@ -78,6 +80,12 @@ public class MainView extends VerticalLayout {
 		formatter.extend(creditCardField);
 //		formatter.addCreditCardChangedListener(e -> setCCIcon(creditCardField, e.getCreditCardType()));
 		return creditCardField;
+	}
+
+	private Component createPhoneNumberField() {
+		TextField field = new TextField("Phone number formatting", "Add a German phone number");
+		PhoneNumberSample.getFormatter().extend(field);
+		return field;
 	}
 
 	private Component createNumeralField() {
@@ -120,7 +128,7 @@ public class MainView extends VerticalLayout {
 	}
 
 	private void setCCIcon(TextField field, CreditCardType ccType) {
-		
+
 //		if (ccType.equals(CreditCardType.UNKNOWN)) {
 //			field.addStyleName(STYLE_CC_UNKNOWN);
 //		} else {
