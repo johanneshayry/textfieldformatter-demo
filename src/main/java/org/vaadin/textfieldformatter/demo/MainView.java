@@ -8,6 +8,7 @@ import org.vaadin.textfieldformatter.CreditCardFieldFormatter.CreditCardType;
 import org.vaadin.textfieldformatter.samples.BlocksFormatterSample;
 import org.vaadin.textfieldformatter.samples.CreditCardFormatterSample;
 import org.vaadin.textfieldformatter.samples.CustomNumeralFormatterSample;
+import org.vaadin.textfieldformatter.samples.DateFieldFormatterSample;
 import org.vaadin.textfieldformatter.samples.DelimitersFormatterSample;
 import org.vaadin.textfieldformatter.samples.NumeralFormatterSample;
 import org.vaadin.textfieldformatter.samples.NumericFormatterSample;
@@ -55,14 +56,15 @@ public class MainView extends VerticalLayout {
 	private void initCodeSamples() {
 		Example creditCardExample = new Example(this::createCreditCardField, CreditCardFormatterSample.class);
 		Example phoneNumberExample = new Example(this::createPhoneNumberField, PhoneNumberSample.class);
+		Example dateExample = new Example(this::createDateField, DateFieldFormatterSample.class);
 		Example numeralExample = new Example(this::createNumeralField, NumeralFormatterSample.class);
 		Example customNumeralExample = new Example(this::createCustomNumeralField, CustomNumeralFormatterSample.class);
 		Example blocksExample = new Example(this::createBlocksField, BlocksFormatterSample.class);
 		Example numericExample = new Example(this::createNumericField, NumericFormatterSample.class);
 		Example delimitersExample = new Example(this::createDelimitersField, DelimitersFormatterSample.class);
 		Example prefixExample = new Example(this::createPrefixField, PrefixFormatterSample.class);
-		addWithFullWidth(Arrays.asList(creditCardExample, phoneNumberExample, numeralExample, customNumeralExample,
-				blocksExample, numericExample, delimitersExample, prefixExample));
+		addWithFullWidth(Arrays.asList(creditCardExample, phoneNumberExample, dateExample, numeralExample,
+				customNumeralExample, blocksExample, numericExample, delimitersExample, prefixExample));
 	}
 
 	private <T extends Component & HasSize> void addWithFullWidth(List<T> components) {
@@ -86,6 +88,13 @@ public class MainView extends VerticalLayout {
 		TextField field = new TextField("Phone number formatting", "Add a German phone number");
 		PhoneNumberSample.getFormatter().extend(field);
 		return field;
+	}
+
+	private Component createDateField() {
+		TextField field = new TextField("Date formatting", "Accepts date yyyy-MM-dd");
+		DateFieldFormatterSample.getFormatter().extend(field);
+		return field;
+
 	}
 
 	private Component createNumeralField() {
