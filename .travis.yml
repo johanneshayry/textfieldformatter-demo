@@ -1,13 +1,11 @@
+os: linux
 language: java
 jdk:
-  - oraclejdk8
-sudo: true
-dist: trusty
+  - openjdk11
+dist: xenial
 
 addons:
-  apt:
-    packages:
-      - google-chrome-stable
+  chrome: stable
 
 install: true
 script: sh ./.travis.script.sh
