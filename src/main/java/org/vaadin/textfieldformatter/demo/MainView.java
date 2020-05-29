@@ -131,7 +131,7 @@ public class MainView extends VerticalLayout {
 
 	private Component createPrefixField() {
 		TextField field = new TextField();
-		field.setPlaceholder("PREFIX-");
+		field.setPlaceholder("Enter numbers");
 		PrefixFormatterSample.getFormatter().extend(field);
 		return field;
 	}

@@ -9,7 +9,7 @@ public class PrefixFormatterSample {
 return new Builder()
     .blocks(4, 3, 3, 4)
     .delimiters(".", ".")
-    .prefix("PREFIX", "-")
+    .prefix("PREFIX", /*show immediately*/ false, "-")
     .numeric()
     .build();
 		// }
