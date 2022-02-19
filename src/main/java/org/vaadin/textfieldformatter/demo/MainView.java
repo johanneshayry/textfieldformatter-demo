@@ -37,7 +37,6 @@ import com.vaadin.flow.theme.lumo.Lumo;
  * intended to be overridden to add component to the user interface and
  * initialize non-component functionality.
  */
-@Theme(Lumo.class)
 @Route("")
 public class MainView extends VerticalLayout {
 
