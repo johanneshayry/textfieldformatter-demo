@@ -16,7 +16,7 @@
 		<jetty.plugin.version>9.4.15.v20190215</jetty.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<addon.version>5.4-SNAPSHOT</addon.version>
+		<addon.version>5.4.0</addon.version>
 	</properties>
 
 	<repositories>
